@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海铃立希名字汉字测试 - ZLeep的仓库</title>
+    <link rel="stylesheet" href="../assets/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <a class="back-link" href="../index.html">← 返回首页</a>
+            <span class="page-type">[ 小测试 ]</span>
+        </div>
+
+        <h1><span class="tag-dot type-umtk"></span>海铃立希名字汉字测试</h1>
+        <p class="subtitle">一个简单的网页小测试（选择题），可以本地运行，也适合按需改成你自己的题目与选项。</p>
+
+        <div class="hero">
+            <p>可直接从本站下载项目 ZIP，然后按文档步骤在本地启动。</p>
+            <div class="actions">
+                <a class="btn primary" href="../packages/UMTK-Test-main.zip" download>下载压缩包（ZIP）</a>
+            </div>
+        </div>
+
+        <section>
+            <h2>我为什么做这个</h2>
+            <p>本项目原计划用于 <strong>cp32pre</strong>：旨在测试前来领取“海希无料”的朋友们，能否把 <strong>海铃</strong> 和 <strong>立希</strong> 两位的名字写对（因为总是有人写错别字，所以做成了一个“选出正确写法”的小测验）。</p>
+        </section>
+
+        <section>
+            <h2>它是怎么运作的</h2>
+            <ul>
+                <li>页面会展示一题或多题<strong>选择题</strong>。</li>
+                <li>每题会给出多个名字写法的选项。</li>
+                <li>用户选择自己认为正确的选项并提交。</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>如何在本地运行</h2>
+            <h3 style="font-size:1rem; margin-bottom:8px;">0) 准备环境</h3>
+            <ol>
+                <li>
+                    安装 <strong>Node.js（建议 LTS 版本）</strong>。安装完成后，打开终端/命令行确认版本号：
+                    <pre><code>node -v
+npm -v</code></pre>
+                </li>
+                <li>
+                    获取代码：
+                    <ul>
+                        <li>方式 A：直接下载 ZIP。</li>
+                        <li>方式 B：使用 git：</li>
+                    </ul>
+                    <pre><code>git clone https://github.com/zleep75/UMTK-Test.git
+cd UMTK-Test</code></pre>
+                </li>
+            </ol>
+
+            <h3 style="font-size:1rem; margin:12px 0 8px;">1) 安装依赖</h3>
+            <p>在项目根目录（能看到 <code>package.json</code> 的目录）执行：</p>
+            <pre><code>npm install</code></pre>
+
+            <h3 style="font-size:1rem; margin:12px 0 8px;">2) 启动开发服务器（最常见的方式）</h3>
+            <p>依次尝试以下命令之一（不同项目脚手架命令会不一样）：</p>
+            <pre><code>npm run dev</code></pre>
+            <p>如果提示没有 <code>dev</code> 脚本，再尝试：</p>
+            <pre><code>npm start</code></pre>
+            <p>或者：</p>
+            <pre><code>npm run serve</code></pre>
+            <p>启动成功后，终端会输出本地地址（常见如 <code>http://localhost:3000</code> 或 <code>http://localhost:5173</code>），用浏览器打开即可。</p>
+        </section>
+
+        <section>
+            <h2>构建与部署（可选）</h2>
+            <p>如果你需要生成可部署的静态资源，常见命令是：</p>
+            <pre><code>npm run build</code></pre>
+            <p>构建产物通常会输出到 <code>dist/</code> 或 <code>.next/</code> 等目录（取决于项目所用的框架）。</p>
+        </section>
+
+        <section>
+            <h2>许可（License）</h2>
+            <p>本项目采用 <strong>MIT License</strong> 开源许可发布。</p>
+            <ol>
+                <li>你可以自由使用、复制、修改、合并、发布、分发本项目代码（包括用于商业用途）。</li>
+                <li>你必须在再发布/再分发时保留原作者版权声明与许可声明。</li>
+                <li>本项目按“现状（AS IS）”提供，不提供任何明示或暗示的担保；作者不对使用本项目造成的任何损失负责。</li>
+            </ol>
+        </section>
+
+        <footer>
+            <p>© <span id="year"></span> ZLeep</p>
+        </footer>
+    </div>
+
+    <script src="../assets/project-page.js"></script>
+</body>
+</html>

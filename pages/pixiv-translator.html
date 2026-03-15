@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixiv Contextual Translator - ZLeep的仓库</title>
+    <link rel="stylesheet" href="../assets/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <a class="back-link" href="../index.html">← 返回首页</a>
+            <span class="page-type">[ 浏览器插件 ]</span>
+        </div>
+
+        <h1><span class="tag-dot type-other"></span>Pixiv Contextual Translator</h1>
+        <p class="subtitle">这是一个用于浏览器的 Tampermonkey（油猴）脚本，专为阅读 Pixiv 同人小说设计。它通过调用大语言模型（LLM）API，结合上下文对段落进行就地翻译，有效解决传统机器翻译中因日语主语省略导致的视角混乱问题。</p>
+
+        <div class="hero">
+            <p>本项目包含 Desktop 与 Mobile 两个版本，分别针对电脑端和移动端进行了交互优化。你可以直接从本站下载 ZIP 后按下方文档安装。</p>
+            <div class="actions">
+                <a class="btn primary" href="../packages/Pixiv-Contextual-Translator-main.zip" download>下载压缩包（ZIP）</a>
+            </div>
+        </div>
+
+        <section>
+            <h2>核心功能</h2>
+            <ul>
+                <li><strong>上下文感知翻译：</strong>自动抓取目标段落及其前后各两段内容作为上下文，利用大模型精确推断动作主体，保证连贯的人物视角。</li>
+                <li><strong>可视化专有词库：</strong>内置图形化词库管理器，支持“日文-中文”键值对的增删改查，词库数据保存在本地并自动注入提示词。</li>
+                <li><strong>支持重新翻译：</strong>点击已生成翻译结果的段落，可清空旧数据并重新触发 API 请求。</li>
+                <li><strong>无侵入式就地展示：</strong>翻译结果直接插入原文下方，不使用侧边栏或独立悬浮窗。</li>
+                <p class="note">注意：需要使用你自己的 API Key，调用模型会产生实际费用，请按需配置。</p>
+            </ul>
+        </section>
+
+        <section>
+            <h2>版本说明</h2>
+            <ul>
+                <li><strong>Desktop 版（desktop.user.js）：</strong>适用电脑端浏览器（Chrome、Edge 等）；页面极简，不额外注入 UI，设置入口在浏览器右上角 Tampermonkey 菜单。</li>
+                <li><strong>Mobile 版（mobile.user.js）：</strong>适用移动端浏览器（如 Android 的 Kiwi Browser）；网页右下角注入半透明悬浮齿轮（⚙️）按钮，可一键呼出管理面板，面板触控尺寸已放大优化。</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>安装指南</h2>
+            <ol>
+                <li>
+                    <strong>准备环境</strong>
+                    <ul>
+                        <li>电脑端：在浏览器扩展商店安装 Tampermonkey。</li>
+                        <li>手机端：安装支持扩展的 Kiwi Browser，并在其扩展商店中安装 Tampermonkey。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>安装脚本</strong>
+                    <ul>
+                        <li>下载 ZIP 后完整解压到本地目录。</li>
+                        <li>在 Tampermonkey 中点击“添加新脚本”。</li>
+                        <li>清空默认内容，将对应脚本代码（desktop.user.js 或 mobile.user.js）完整粘贴进去。</li>
+                        <li>保存并启用脚本。</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>使用说明</h2>
+            <ol>
+                <li>
+                    <strong>配置 API Key</strong>
+                    <ul>
+                        <li>打开任意 Pixiv 小说正文页面（URL 规则：*://www.pixiv.net/novel/*）。</li>
+                        <li>首次点击页面上的任意日文段落时，系统会自动弹窗请求输入 API Key（默认调用 OpenAI API 格式）。</li>
+                        <li>Desktop 版修改路径：Tampermonkey 扩展图标 → 设置 API Key。</li>
+                        <li>Mobile 版修改路径：右下角悬浮齿轮按钮 → 面板顶部“🔑 API Key”。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>执行翻译</strong>
+                    <ul>
+                        <li>将鼠标或手指停留在日文段落上，点击即可触发翻译。</li>
+                        <li>原文下方会显示“正在翻译中...”，请求完成后自动替换为中文。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>管理词库</strong>
+                    <ul>
+                        <li>Desktop 版：Tampermonkey 扩展图标 → 管理专有词库。</li>
+                        <li>Mobile 版：点击页面右下角悬浮齿轮按钮。</li>
+                        <li>在可视化面板中添加日文原文与中文翻译，保存后可立即生效。</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>高级配置（开发者选项）</h2>
+            <p>脚本默认使用 OpenAI 的 <code>https://api.openai.com/v1/chat/completions</code> 接口和 <code>gpt-3.5-turbo</code> 模型。若需改用其他兼容 OpenAI 格式的 API（如 DeepSeek、Claude 代理等），可在脚本 <code>CONFIG</code> 对象中手动修改：</p>
+            <pre><code>const CONFIG = {
+  apiEndpoint: GM_getValue('api_endpoint', 'https://api.your-custom-endpoint.com/v1/chat/completions'),
+  model: GM_getValue('model', 'your-preferred-model'),
+  // ... 其他配置
+};</code></pre>
+        </section>
+
+        <section>
+            <h2>技术栈</h2>
+            <ul>
+                <li>原生 JavaScript（ES6+）</li>
+                <li>HTML/CSS（DOM 动态操作）</li>
+                <li>Tampermonkey API（GM_xmlhttpRequest、GM_setValue、GM_getValue、GM_registerMenuCommand）</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>开源协议（License）</h2>
+            <p>本项目采用 MIT License。你可以自由使用、修改和分发本项目代码，只需在副本中保留原作者版权声明即可。</p>
+            
+        </section>
+
+        <footer>
+            <p>© <span id="year"></span> ZLeep</p>
+        </footer>
+    </div>
+
+    <script src="../assets/project-page.js"></script>
+</body>
+</html>

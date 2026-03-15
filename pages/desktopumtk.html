@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海希海桌宠 - ZLeep的仓库</title>
+    <link rel="stylesheet" href="../assets/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <a class="back-link" href="../index.html">← 返回首页</a>
+            <span class="page-type">[ 桌宠 ]</span>
+        </div>
+
+        <h1><span class="tag-dot type-umtk"></span>海希海桌宠</h1>
+        <p class="subtitle">海铃 + 立希桌宠，使用 Electron 开发，主打计数功能。</p>
+
+        <div class="hero">
+            <p>点击下方按钮前往 itch.io 下载对应系统版本。</p>
+            <div class="actions">
+                <a class="btn primary" href="https://zleep0705.itch.io/desktopumtk" target="_blank" rel="noopener noreferrer">前往下载（itch.io）</a>
+            </div>
+            <p>提示：请在 itch.io 页面中选择 Windows 或 Mac 对应版本下载。</p>
+        </div>
+
+        <section>
+            <h2>下载前必读</h2>
+            <p><strong>Windows 用户：</strong>直接点开 exe 文件即可运行。</p>
+            <p style="margin-top: 10px;"><strong>MacOS 用户：</strong></p>
+            <p>以下是安装指引：</p>
+            <ol>
+                <li>把 DMG 里的 .app 文件拖拽到“桌面”或者“应用程序”文件夹里。不要直接在 DMG 里面双击打开。</li>
+                <li>打开终端（Terminal）（按 Command+空格，搜 Terminal）。</li>
+                <li>复制并粘贴这行命令但是不要回车（注意 <code>cr</code> 后面有一个空格）：<br>xattr -cr </li>
+                <li>不要按回车。把刚刚拖到应用程序/桌面上的 DesktopPet.app 图标拖进终端窗口。</li>
+                <li>然后终端会显示：xattr -cr /Users/yourname/Desktop/DesktopPet.app</li>
+                <li>再回车。这样之后应该就可以正常打开了。</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>功能简介</h2>
+            <ul>
+                <li>基础计数功能</li>
+                <li>轻量桌面常驻体验</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© <span id="year"></span> ZLeep</p>
+        </footer>
+    </div>
+
+    <script src="../assets/project-page.js"></script>
+</body>
+</html>
