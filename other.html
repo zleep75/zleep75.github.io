@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他 - ZLeep的仓库</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --accent-color: #3498db;
+            --hover-bg: #f4faff;
+            --border-color: #ecf0f1;
+            --tag-other: #c9e7f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 80px 25px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .navigator {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            font-weight: 600;
+            border-bottom-color: #c8dff3;
+        }
+
+        .nav-link.active {
+            color: var(--text-main);
+            font-weight: 600;
+            border-bottom-color: var(--accent-color);
+        }
+
+        header { margin-bottom: 60px; }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .project-list { border-top: 1px solid var(--border-color); }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 15px;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-item:hover {
+            background-color: var(--hover-bg);
+            padding-left: 25px;
+        }
+
+        .project-status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            background-color: var(--tag-other);
+        }
+
+        .project-content { flex-grow: 1; }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.2s ease;
+        }
+
+        .project-item:hover .project-title { color: var(--accent-color); }
+
+        .project-type {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 90%;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 20px; }
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .project-type {
+                margin-top: 2px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>其他</h1>
+                <nav class="navigator" aria-label="站点导航">
+                    <a class="nav-link" href="index.html">首页</a>
+                    <a class="nav-link" href="mfen.html">まふえな</a>
+                    <a class="nav-link" href="umtk.html">立希海铃</a>
+                    <a class="nav-link active" href="other.html">其他</a>
+                </nav>
+            </div>
+            <p class="bio">这里什么都有。</p>
+        </header>
+
+        <main>
+            <h2>项目列表</h2>
+            <div class="project-list">
+                <a href="pages/pixiv-translator.html" class="project-item">
+                    <div class="project-status-dot" title="插件项目"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-title">Pixiv Contextual Translator</span>
+                            <span class="project-type">[ 浏览器插件 ]</span>
+                        </div>
+                        <p class="project-desc">用于 Pixiv 的情境翻译插件，主要是我自己使用于阅读日语同人文。有自建词库功能。点击进入详情页可直接下载 ZIP，并查看安装教程（网页插件版本和 Android 插件版本）。需要使用你自己的 API Key，嗯有点烧钱。</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 ZLeep.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -3,40 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZLeep的仓库</title>
+    <title>立希海铃 - ZLeep的仓库</title>
     <style>
-        /* 基础变量与设计系统 */
         :root {
             --bg-color: #ffffff;
-            --text-main: #2c3e50; /* 更深柔和的黑色 */
+            --text-main: #2c3e50;
             --text-muted: #7f8c8d;
-            --accent-color: #3498db; /* 友情蓝 */
-            --hover-bg: #f4faff; /* 极淡的悬停蓝色 */
+            --accent-color: #3498db;
+            --hover-bg: #f4faff;
             --border-color: #ecf0f1;
-            
-            /* 项目类型颜色 */
-            --tag-mfen: #d6a37c; 
+            --tag-mfen: #d6a37c;
             --tag-umtk: #b2ebce;
             --tag-other: #c9e7f2;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.8; /* 增加行高，提升阅读舒适度 */
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 核心布局容器 */
         .container {
-            max-width: 780px; /* 适中的宽度，不过窄也不过宽 */
+            max-width: 780px;
             margin: 0 auto;
             padding: 80px 25px;
         }
@@ -77,10 +69,7 @@
             border-bottom-color: var(--accent-color);
         }
 
-        /* 头部区域 */
-        header {
-            margin-bottom: 60px;
-        }
+        header { margin-bottom: 60px; }
 
         h1 {
             font-size: 2.2rem;
@@ -96,32 +85,6 @@
             font-size: 1.05rem;
         }
 
-        /* 社交媒体标签 */
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .social-tag {
-            font-size: 0.85rem;
-            background-color: #f8f9fa;
-            color: var(--text-main);
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        /* 鼠标悬停社交标签的效果 */
-        .social-tag:hover {
-            background-color: var(--border-color);
-            transform: translateY(-1px);
-        }
-
-        /* 分区标题 */
         h2 {
             font-size: 1.4rem;
             font-weight: 600;
@@ -131,8 +94,7 @@
             position: relative;
             display: inline-block;
         }
-        
-        /* 标题下方的小装饰线 */
+
         h2::after {
             content: '';
             position: absolute;
@@ -144,30 +106,24 @@
             border-radius: 2px;
         }
 
-        /* 项目列表区域 */
-        .project-list {
-            border-top: 1px solid var(--border-color);
-        }
+        .project-list { border-top: 1px solid var(--border-color); }
 
-        /* 单个项目行 */
         .project-item {
             display: flex;
             align-items: center;
             padding: 25px 15px;
             border-bottom: 1px solid var(--border-color);
-            text-decoration: none; /* 让整个行可点击 */
+            text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease; /* 平滑过渡 */
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        /* 鼠标悬停项目行的效果：背景色变蓝，整个内容轻微右移 */
         .project-item:hover {
             background-color: var(--hover-bg);
-            padding-left: 25px; /* 内容右移 */
+            padding-left: 25px;
         }
 
-        /* 项目左侧的彩色小方块 */
         .project-status-dot {
             width: 10px;
             height: 10px;
@@ -176,15 +132,12 @@
             flex-shrink: 0;
         }
 
-        /* 内容区域 */
-        .project-content {
-            flex-grow: 1;
-        }
+        .project-content { flex-grow: 1; }
 
         .project-header {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* 标题和类型分居两头 */
+            justify-content: space-between;
             margin-bottom: 5px;
         }
 
@@ -194,30 +147,23 @@
             color: var(--text-main);
             transition: color 0.2s ease;
         }
-        
-        /* 悬停时项目标题变蓝 */
-        .project-item:hover .project-title {
-            color: var(--accent-color);
-        }
+
+        .project-item:hover .project-title { color: var(--accent-color); }
 
         .project-type {
             font-size: 0.8rem;
             color: var(--text-muted);
-            font-family: monospace; /* 使用等宽字体显得更“极客” */
+            font-family: monospace;
         }
 
         .project-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
-            max-width: 90%; /* 防止描述文字过长 */
+            max-width: 90%;
         }
 
-        /* 不同项目类型的方块颜色 */
-        .type-mfen { background-color: var(--tag-mfen); }
         .type-umtk { background-color: var(--tag-umtk); }
-        .type-other { background-color: var(--tag-other); }
 
-        /* 页脚 */
         footer {
             margin-top: 80px;
             font-size: 0.9rem;
@@ -225,11 +171,8 @@
             text-align: center;
         }
 
-        /* 响应式调整 */
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 20px;
-            }
+            .container { padding: 40px 20px; }
             .header-top {
                 flex-direction: column;
                 align-items: flex-start;
@@ -247,47 +190,23 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <header>
             <div class="header-top">
-                <h1>ZLeep的仓库</h1>
+                <h1>立希海铃</h1>
                 <nav class="navigator" aria-label="站点导航">
-                    <a class="nav-link active" href="index.html">首页</a>
+                    <a class="nav-link" href="index.html">首页</a>
                     <a class="nav-link" href="mfen.html">まふえな</a>
-                    <a class="nav-link" href="umtk.html">立希海铃</a>
+                    <a class="nav-link active" href="umtk.html">立希海铃</a>
                     <a class="nav-link" href="other.html">其他</a>
                 </nav>
             </div>
-            <p class="bio">ZLeep是一款温良同人女，喜欢探索和捣鼓的工设生。</p>
-            <p class="bio">这里都是乱七八糟的开源项目和我闹着玩的东西。需要源代码可以去我Github下载。画和文到我社交媒体去看就好，点击下面可以跳转（虽然不排除以后往这里放一点社交媒体上放不出来的东西哈哈）</p>
-            <p class="bio">Steam好友码：1112681265</p>
-
-            <div class="social-links">
-                <a class="social-tag" href="https://weibo.com/u/3294383644" target="_blank" rel="noopener noreferrer">微博: @ZLeep吃什么</a>
-                <a class="social-tag" href="https://www.xiaohongshu.com/user/profile/5f6a19b000000000010001bc" target="_blank" rel="noopener noreferrer">小红书: ZLeeeeeeep</a>
-                <a class="social-tag" href="https://zleep0705.lofter.com" target="_blank" rel="noopener noreferrer">LOFTER: ZLeep</a>
-                <a class="social-tag" href="https://x.com/ZLeep0705" target="_blank" rel="noopener noreferrer">Twitter: ZLeep</a>
-            </div>
-
-            
+            <p class="bio">这里收录立希海铃相关内容。</p>
         </header>
 
         <main>
-            <h2>神秘小工具</h2>
-            
+            <h2>项目列表</h2>
             <div class="project-list">
-                <a href="pages/desktopmfen.html" class="project-item">
-                    <div class="project-status-dot type-mfen" title="真冬绘名桌宠"></div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <span class="project-title">真冬绘名桌宠</span>
-                            <span class="project-type">[ 桌宠 ]</span>
-                        </div>
-                        <p class="project-desc">一个包含真冬和绘名的桌宠。有番茄钟、点击互动、随机对话功能。使用Godot开发。点击进入详情页可查看安装指引，并跳转 itch.io 下载 Windows / Mac 版本。</p>
-                    </div>
-                </a>
-
                 <a href="pages/desktopumtk.html" class="project-item">
                     <div class="project-status-dot type-umtk" title="海希海桌宠"></div>
                     <div class="project-content">
@@ -296,17 +215,6 @@
                             <span class="project-type">[ 桌宠 ]</span>
                         </div>
                         <p class="project-desc">一个包含海铃和立希的桌宠。使用Electron开发，主要就是计数功能。点击进入详情页可查看安装指引，并跳转 itch.io 下载 Windows / Mac 版本。</p>
-                    </div>
-                </a>
-
-                <a href="pages/pixiv-translator.html" class="project-item">
-                    <div class="project-status-dot type-other" title="插件项目"></div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <span class="project-title">Pixiv Contextual Translator</span>
-                            <span class="project-type">[ 浏览器插件 ]</span>
-                        </div>
-                        <p class="project-desc">用于 Pixiv 的情境翻译插件，主要是我自己使用于阅读日语同人文。有自建词库功能。点击进入详情页可直接下载 ZIP，并查看安装教程（网页插件版本和 Android 插件版本）。需要使用你自己的 API Key，嗯有点烧钱。</p>
                     </div>
                 </a>
 
@@ -320,11 +228,7 @@
                         <p class="project-desc">本来是给cp32pre的无料领取写的玩意儿结果我摊位没了。但是很好玩我还弄了家产的表情包来显示正确与否。点击进入详情页可直接下载 ZIP，并查看本地运行教程。可以自己改题目。</p>
                     </div>
                 </a>
-            </div>
 
-            <h2>动态</h2>
-
-            <div class="project-list">
                 <a href="https://www.allcpp.cn/d/1360434.do#tabType=0" target="_blank" rel="noopener noreferrer" class="project-item">
                     <div class="project-status-dot type-umtk" title="动态"></div>
                     <div class="project-content">
@@ -342,6 +246,5 @@
             <p>&copy; 2026 ZLeep.</p>
         </footer>
     </div>
-
 </body>
 </html>
