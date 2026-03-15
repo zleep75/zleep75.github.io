@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZLeep的仓库</title>
+    <style>
+        /* 基础变量与设计系统 */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #2c3e50; /* 更深柔和的黑色 */
+            --text-muted: #7f8c8d;
+            --accent-color: #3498db; /* 友情蓝 */
+            --hover-bg: #f4faff; /* 极淡的悬停蓝色 */
+            --border-color: #ecf0f1;
+            
+            /* 项目类型颜色 */
+            --tag-pet: #5f9cf1; 
+            --tag-plugin: #f5b8f6; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8; /* 增加行高，提升阅读舒适度 */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 核心布局容器 */
+        .container {
+            max-width: 780px; /* 适中的宽度，不过窄也不过宽 */
+            margin: 0 auto;
+            padding: 80px 25px;
+        }
+
+        /* 头部区域 */
+        header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        /* 社交媒体标签 */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-tag {
+            font-size: 0.85rem;
+            background-color: #f8f9fa;
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* 鼠标悬停社交标签的效果 */
+        .social-tag:hover {
+            background-color: var(--border-color);
+            transform: translateY(-1px);
+        }
+
+        /* 分区标题 */
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* 标题下方的小装饰线 */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* 项目列表区域 */
+        .project-list {
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 单个项目行 */
+        .project-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 15px;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none; /* 让整个行可点击 */
+            color: inherit;
+            transition: all 0.3s ease; /* 平滑过渡 */
+            position: relative;
+        }
+
+        /* 鼠标悬停项目行的效果：背景色变蓝，整个内容轻微右移 */
+        .project-item:hover {
+            background-color: var(--hover-bg);
+            padding-left: 25px; /* 内容右移 */
+        }
+
+        /* 项目左侧的彩色小方块 */
+        .project-status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        /* 内容区域 */
+        .project-content {
+            flex-grow: 1;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* 标题和类型分居两头 */
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.2s ease;
+        }
+        
+        /* 悬停时项目标题变蓝 */
+        .project-item:hover .project-title {
+            color: var(--accent-color);
+        }
+
+        .project-type {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace; /* 使用等宽字体显得更“极客” */
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 90%; /* 防止描述文字过长 */
+        }
+
+        /* 不同项目类型的方块颜色 */
+        .type-pet { background-color: var(--tag-pet); }
+        .type-plugin { background-color: var(--tag-plugin); }
+
+        /* 页脚 */
+        footer {
+            margin-top: 80px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .project-type {
+                margin-top: 2px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ZLeep的仓库</h1>
+            <p class="bio">ZLeep是一款温良同人女，喜欢探索和捣鼓的工设生。目前最爱的是pjsk的まふえな和BangDream的海希（都是无差，左右无意义，只是写着顺口）。</p>
+            <p class="bio">这里都是乱七八糟的开源项目和我闹着玩的东西。画和文到我社交媒体去看就好喔！（虽然不排除以后往这里放一点社交媒体上放不出来的东西哈哈）</p>
+            
+            <div class="social-links">
+                <a class="social-tag" href="https://weibo.com/u/3294383644" target="_blank" rel="noopener noreferrer">微博: @ZLeep吃什么</a>
+                <a class="social-tag" href="https://www.xiaohongshu.com/user/profile/5f6a19b000000000010001bc" target="_blank" rel="noopener noreferrer">小红书: ZLeeeeeeep</a>
+                <a class="social-tag" href="https://zleep0705.lofter.com" target="_blank" rel="noopener noreferrer">LOFTER: ZLeep</a>
+            </div>
+        </header>
+
+        <main>
+            <h2>神秘小工具</h2>
+            
+            <div class="project-list">
+                <a href="https://zleep0705.itch.io/desktopmfen" target="_blank" class="project-item">
+                    <div class="project-status-dot type-pet" title="马画马桌宠"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-title">马画马桌宠</span>
+                            <span class="project-type">[ 桌宠 ]</span>
+                        </div>
+                        <p class="project-desc">一个包含真冬和绘名的桌宠。有番茄钟、点击互动、随机对话功能。使用Godot开发。点击可以到itch.io下载相应的版本。（注意：Mac用户请阅读下载界面的指引）</p>
+                    </div>
+                </a>
+
+                <a href="https://zleep0705.itch.io/desktopumtk" target="_blank" class="project-item">
+                    <div class="project-status-dot type-pet" title="海希海桌宠"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-title">海希海桌宠</span>
+                            <span class="project-type">[ 桌宠 ]</span>
+                        </div>
+                        <p class="project-desc">一个包含海铃和立希的桌宠。使用Electron开发，主要就是计数功能。点击可以到itch.io下载相应的版本。（注意：Mac用户请阅读下载界面的指引）</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/zleep75/Pixiv-Contextual-Translator" target="_blank" class="project-item">
+                    <div class="project-status-dot type-plugin" title="插件项目"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-title">Pixiv Contextual Translator</span>
+                            <span class="project-type">[ 浏览器插件 ]</span>
+                        </div>
+                        <p class="project-desc">用于 Pixiv 的情境翻译插件，主要是我自己使用于阅读日语同人文。有自建词库功能。开源项目，页面内包含详细的安装教程。需要使用你自己的api key。嗯有点烧钱。</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 ZLeep. Designed with comfort.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
