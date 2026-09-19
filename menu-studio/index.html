@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#092d3a">
+  <title>摊位菜单生成器</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#top" aria-label="摊位菜单生成器首页">
+      <span class="brand-mark" aria-hidden="true">菜</span>
+      <span><strong>摊位菜单生成器</strong><small>MENU STUDIO</small></span>
+    </a>
+    <div class="save-state" id="saveState" role="status"><i></i><span>已保存到本机</span></div>
+    <div class="header-actions">
+      <button class="button button-ghost" type="button" data-action="reset">新建</button>
+      <button class="button button-accent" type="button" data-action="export-html">导出电子菜单</button>
+    </div>
+  </header>
+
+  <nav class="mobile-tabs" aria-label="编辑器视图">
+    <button class="active" type="button" data-mobile-view="edit">编辑</button>
+    <button type="button" data-mobile-view="preview">预览</button>
+  </nav>
+
+  <main class="workspace" id="top">
+    <section class="editor-pane" id="editorPane" aria-label="菜单编辑器">
+      <div class="editor-intro">
+        <p class="eyebrow">BUILD YOUR MENU</p>
+        <p>每个分类内一行最多展示四件制品；内容越多，菜单按行向下增长。电子版中的制品链接可以直接点击。</p>
+      </div>
+
+      <details class="editor-section" open>
+        <summary><span><b>01</b> 摊位资料</span><i>⌄</i></summary>
+        <div class="fields two-columns">
+          <label class="field field-wide">摊位名称<input name="stall.name" type="text" maxlength="60" placeholder="例如：春日交换所"></label>
+          <label class="field">摊位号<input name="stall.number" type="text" maxlength="30" placeholder="例如：B12"></label>
+          <label class="field">摊主主页<input name="stall.homeUrl" type="url" placeholder="https://..."></label>
+          <label class="field field-wide">一句介绍<textarea name="stall.description" rows="3" maxlength="240" placeholder="介绍你的摊位、主推内容或交换方式"></textarea></label>
+          <label class="field field-wide file-field">左侧信息块背景图（可选）<span class="file-control"><input name="stall.coverImage" type="file" accept="image/png,image/jpeg,image/webp"><b>选择图片</b><em data-file-label="stall.coverImage">未选择</em></span></label>
+          <label class="field field-wide file-field">二维码图片<span class="file-control"><input name="stall.qrImage" type="file" accept="image/png,image/jpeg,image/webp"><b>选择二维码</b><em data-file-label="stall.qrImage">未选择</em></span></label>
+          <label class="field">背景图水平位置<input name="stall.coverPosition.x" type="range" min="0" max="100"></label>
+          <label class="field">背景图垂直位置<input name="stall.coverPosition.y" type="range" min="0" max="100"></label>
+        </div>
+      </details>
+
+      <details class="editor-section" open>
+        <summary><span><b>02</b> 分类与制品</span><i>⌄</i></summary>
+        <div class="section-toolbar">
+          <button class="button button-small" type="button" data-action="add-category">＋ 新分类</button>
+        </div>
+        <div id="categoryEditor" class="category-editor"></div>
+      </details>
+
+      <details class="editor-section" open>
+        <summary><span><b>03</b> 配色</span><i>⌄</i></summary>
+        <div class="color-grid">
+          <label>主色<input name="theme.primary" type="color"></label>
+          <label>强调色<input name="theme.accent" type="color"></label>
+          <label>页面底色<input name="theme.background" type="color"></label>
+          <label>卡片底色<input name="theme.surface" type="color"></label>
+          <label>文字颜色<input name="theme.text" type="color"></label>
+        </div>
+        <div class="palette-row">
+          <button type="button" data-palette="poster"><i style="--swatch:#8586ce"></i>麻花</button>
+          <button type="button" data-palette="berry"><i style="--swatch:#7c2d5b"></i>莓果</button>
+          <button type="button" data-palette="ink"><i style="--swatch:#31365f"></i>夜墨</button>
+          <button type="button" data-palette="moss"><i style="--swatch:#3f6212"></i>青苔</button>
+        </div>
+      </details>
+
+      <details class="editor-section export-section" open>
+        <summary><span><b>04</b> 导出</span><i>⌄</i></summary>
+        <div class="export-grid">
+          <button class="export-card" type="button" data-action="export-html"><span>↗</span><strong>电子菜单 HTML</strong><small>可点击链接，直接上传 GitHub Pages</small></button>
+          <button class="export-card" type="button" data-action="print"><span>⌘</span><strong>打印 / 存为 PDF</strong><small>使用浏览器的打印功能</small></button>
+          <button class="export-card" type="button" data-action="export-png"><span>↓</span><strong>长图 PNG</strong><small>高度随制品数量自动增加</small></button>
+          <button class="export-card" type="button" data-action="export-json"><span>{ }</span><strong>备份草稿</strong><small>导出 JSON，之后可以继续编辑</small></button>
+        </div>
+        <label class="button import-button">导入草稿<input id="importJson" type="file" accept="application/json"></label>
+      </details>
+    </section>
+
+    <aside class="preview-pane" id="previewPane" aria-label="实时预览">
+      <div class="preview-toolbar">
+        <div><i></i><span>实时预览</span></div>
+        <div class="preview-size" aria-label="预览尺寸">
+          <button class="active" type="button" data-preview-size="desktop">电脑</button>
+          <button type="button" data-preview-size="mobile">手机</button>
+        </div>
+      </div>
+      <div class="preview-stage">
+        <div class="preview-frame" id="previewFrame"></div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="undo-bar" id="undoBar" hidden><span id="undoText">已删除制品</span><button type="button" data-action="undo">撤销</button></div>
+
+  <template id="categoryTemplate">
+    <article class="category-block">
+      <div class="category-title-row">
+        <span class="drag-handle" aria-hidden="true">⠿</span>
+        <input class="category-name" type="text" maxlength="40" aria-label="分类名称">
+        <div class="mini-actions">
+          <button type="button" data-action="category-up" title="上移">↑</button>
+          <button type="button" data-action="category-down" title="下移">↓</button>
+          <button type="button" data-action="delete-category" title="删除分类">×</button>
+        </div>
+      </div>
+      <input class="category-description" type="text" maxlength="120" placeholder="分类说明（可选）" aria-label="分类说明">
+      <div class="item-list"></div>
+      <button class="add-item" type="button" data-action="add-item">＋ 添加制品</button>
+    </article>
+  </template>
+
+  <template id="itemTemplate">
+    <article class="item-block">
+      <div class="item-heading">
+        <strong class="item-index">制品</strong>
+        <div class="mini-actions">
+          <button type="button" data-action="item-up" title="上移">↑</button>
+          <button type="button" data-action="item-down" title="下移">↓</button>
+          <button type="button" data-action="delete-item" title="删除制品">×</button>
+        </div>
+      </div>
+      <div class="fields two-columns compact">
+        <label class="field field-wide">制品名称<input data-item-field="name" type="text" maxlength="80" placeholder="例如：Race Condition"></label>
+        <label class="field">作者<input data-item-field="author" type="text" maxlength="60" placeholder="寄售作者 / 社团名"></label>
+        <label class="field">价格或状态<input data-item-field="priceText" type="text" maxlength="30" placeholder="¥20 / 免费交换"></label>
+        <label class="field">角标<input data-item-field="badgeText" type="text" maxlength="20" placeholder="寄售 / NEW"></label>
+        <label class="field">跳转链接<input data-item-field="targetUrl" type="url" placeholder="https://..."></label>
+        <label class="field field-wide">说明<textarea data-item-field="description" rows="2" maxlength="240" placeholder="规格、材质、交换条件……"></textarea></label>
+        <label class="field field-wide file-field">制品图片<span class="file-control"><input data-item-image type="file" accept="image/png,image/jpeg,image/webp"><b>选择图片</b><em>未选择</em></span></label>
+        <label class="field">图片水平位置<input data-item-position="x" type="range" min="0" max="100"></label>
+        <label class="field">图片垂直位置<input data-item-position="y" type="range" min="0" max="100"></label>
+      </div>
+    </article>
+  </template>
+
+  <script src="core.js"></script>
+  <script src="templates.js"></script>
+  <script src="canvas-export.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
